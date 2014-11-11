@@ -1,0 +1,9 @@
+[submodule "CFDEMcoupling-PFM"]
+	path = CFDEMcoupling-PFM
+	url = git@github.com:CFDEMproject/CFDEMcoupling-PFM.git
+[submodule "LIGGGHTS-PFM"]
+	path = LIGGGHTS-PFM
+	url = git@github.com:CFDEMproject/LIGGGHTS-PFM.git
+[submodule "LPP"]
+	path = LPP
+	url = git@github.com:CFDEMproject/LPP.git

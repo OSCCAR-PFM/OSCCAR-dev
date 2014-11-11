@@ -27,5 +27,22 @@ export OSCCAR_USER=$WM_PROJECT_USER_DIR
 export ParaView_DIR=$WM_THIRD_PARTY_DIR/platforms/$WM_ARCH$WM_COMPILER/ParaView-$ParaView_VERSION;
 export PATH=$ParaView_DIR/bin:$PATH;
 export PV_PLUGIN_PATH=$FOAM_LIBBIN/paraview-$ParaView_MAJOR
+
+
+# CFDEMcoupling configuration
+export CFDEM_VERSION=PFM
+export CFDEM_PROJECT_DIR=$OSCCAR_DIR/CFDEMcoupling-$CFDEM_VERSION
+export CFDEM_SRC_DIR=$CFDEM_PROJECT_DIR/src
+export CFDEM_SOLVER_DIR=$CFDEM_PROJECT_DIR/applications/solvers
+export CFDEM_DOC_DIR=$CFDEM_PROJECT_DIR/doc
+export CFDEM_UT_DIR=$CFDEM_PROJECT_DIR/applications/utilities
+export CFDEM_TUT_DIR=$CFDEM_PROJECT_DIR/tutorials
+export CFDEM_PROJECT_USER_DIR=$OSCCAR_DIR/$LOGNAME-$CFDEM_VERSION
+export CFDEM_bashrc=$CFDEM_SRC_DIR/lagrangian/cfdemParticle/etc/bashrc
+export CFDEM_LIGGGHTS_SRC_DIR=$OSCCAR_DIR/LIGGGHTS-PFM/src
+export CFDEM_LIGGGHTS_MAKEFILE_NAME=fedora_fpic
+export CFDEM_LPP_DIR=$OSCCAR_DIR/LPP/src
+export CFDEM_PIZZA_DIR=$OSCCAR_DIR/LPP/src
+source $CFDEM_bashrc
   
 source $OSCCAR_HOME/etc/aliases.sh

@@ -7,3 +7,6 @@
 [submodule "LPP"]
 	path = LPP
 	url = git@github.com:CFDEMproject/LPP.git
+[submodule "ThirdParty-2.3.x/ParaView-4.2.0"]
+	path = ThirdParty-2.3.x/ParaView-4.2.0
+	url = git@github.com:Kitware/ParaView.git

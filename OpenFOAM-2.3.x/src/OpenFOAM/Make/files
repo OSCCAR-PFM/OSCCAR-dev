@@ -44,6 +44,8 @@ primitives/Tensor/lists/sphericalTensorList.C
 primitives/Tensor/lists/symmTensorList.C
 primitives/Tensor/lists/tensorList.C
 
+primitives/Tensor/lists/VectorNLists.C
+
 primitives/Vector/complexVector/complexVector.C
 #if !defined(WM_SP)
 primitives/Vector/floatVector/floatVector.C
@@ -563,6 +565,12 @@ $(Fields)/tensorField/tensorField.C
 $(Fields)/quaternionField/quaternionField.C
 $(Fields)/triadField/triadField.C
 $(Fields)/complexFields/complexFields.C
+
+$(Fields)/VectorNFields/VectorNFields.C
+$(Fields)/VectorNFields/SphericalTensorNFields.C
+$(Fields)/VectorNFields/DiagTensorNFields.C
+$(Fields)/VectorNFields/TensorNFields.C
+$(Fields)/VectorNFields/expandContract/ExpandTensorNField.C
 
 $(Fields)/labelField/labelIOField.C
 $(Fields)/labelField/labelFieldIOField.C

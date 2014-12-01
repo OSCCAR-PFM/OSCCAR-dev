@@ -24,6 +24,7 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "GAMGInterface.H"
+#include "scalarCoeffField.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -54,5 +55,57 @@ void Foam::GAMGInterface::interfaceInternalField
     }
 }
 
+
+template<class Type>
+Foam::tmp<Foam::CoeffField<Type> > Foam::GAMGInterface::agglomerateBlockCoeffs
+(
+    const Foam::CoeffField<Type>& fineCoeffs
+) const
+{
+    tmp<CoeffField<Type> > tcoarseCoeffs(new CoeffField<Type>(size()));
+    CoeffField<Type>& coarseCoeffs = tcoarseCoeffs();
+
+    typedef CoeffField<Type> TypeCoeffField;
+
+    typedef typename TypeCoeffField::linearTypeField linearTypeField;
+    typedef typename TypeCoeffField::squareTypeField squareTypeField;
+
+    if (fineCoeffs.activeType() == blockCoeffBase::SQUARE)
+    {
+        squareTypeField& activeCoarseCoeffs = coarseCoeffs.asSquare();
+        const squareTypeField& activeFineCoeffs = fineCoeffs.asSquare();
+
+        activeCoarseCoeffs *= 0.0;
+
+        // Added weights to account for non-integral matching
+        forAll(faceRestrictAddressing_, ffi)
+        {
+            //activeCoarseCoeffs[faceRestrictAddressing_[ffi]] +=
+            //    restrictWeights_[ffi]*activeFineCoeffs[fineAddressing_[ffi]];
+            // FIXME?
+            activeCoarseCoeffs[faceRestrictAddressing_[ffi]] +=
+            	activeFineCoeffs[ffi];
+        }
+    }
+    else if (fineCoeffs.activeType() == blockCoeffBase::LINEAR)
+    {
+        linearTypeField& activeCoarseCoeffs = coarseCoeffs.asLinear();
+        const linearTypeField& activeFineCoeffs = fineCoeffs.asLinear();
+
+        activeCoarseCoeffs *= 0.0;
+
+        // Added weights to account for non-integral matching
+        forAll(faceRestrictAddressing_, ffi)
+        {
+            //activeCoarseCoeffs[faceRestrictAddressing_[ffi]] +=
+            //    restrictWeights_[ffi]*activeFineCoeffs[fineAddressing_[ffi]];
+            // FIXME?
+            activeCoarseCoeffs[faceRestrictAddressing_[ffi]] +=
+            	activeFineCoeffs[ffi];
+        }
+    }
+
+    return tcoarseCoeffs;
+}
 
 // ************************************************************************* //

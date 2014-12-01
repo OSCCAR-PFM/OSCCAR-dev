@@ -32,6 +32,10 @@ License
 #include "processorFvPatchVectorNFieldsFwd.H"
 #include "processorFvPatchField.H"
 
+#include "BlockLduMatrix.H"
+#include "BlockLduInterfaceField.H"
+#include "CoeffField.H"
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #endif

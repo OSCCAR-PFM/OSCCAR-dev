@@ -546,7 +546,10 @@ void insertDiagSource
     Field<blockType>& b
 )
 {
+    // hack
     matrix.completeAssembly();
+    //matrix.boundaryManipulate(matrix.psi().boundaryField()); // no
+    
 
     // Save a copy for different components
     scalarField& diag = matrix.diag();
@@ -976,7 +979,8 @@ void insertBoundaryContributions
         surfaceInterpolationScheme<scalar>::New
         (
             psi.mesh(),
-            psi.mesh().schemesDict().interpolationScheme
+            //psi.mesh().schemesDict().interpolationScheme
+            psi.mesh().interpolationScheme
             (
                 "grad(" + psi.name() + ')'
             )
@@ -1102,7 +1106,8 @@ void insertBoundaryContributions
         surfaceInterpolationScheme<scalar>::New
         (
             psi.mesh(),
-            psi.mesh().schemesDict().interpolationScheme
+            //psi.mesh().schemesDict().interpolationScheme
+            psi.mesh().interpolationScheme
             (
                 "div(" + psi.name() + ')'
             )

@@ -438,6 +438,26 @@ void Foam::processorFvPatchField<Type>::updateInterfaceMatrix
 }
 
 
+
+// hack
+template<class Type>
+void Foam::processorFvPatchField<Type>::initInterfaceMatrixUpdate
+(
+	Field<Type>& result,
+	const Field<Type>& psiInternal,
+	const CoeffField<Type>& coeffs,
+	const Pstream::commsTypes commsType
+) const
+{
+	/*Foam::processorFvPatchField<Type>::initInterfaceMatrixUpdate
+	(
+		result,
+		psiInternal,
+		c
+		commsType
+	);*/
+}
+
 template<class Type>
 void Foam::processorFvPatchField<Type>::initInterfaceMatrixUpdate
 (
@@ -494,6 +514,18 @@ void Foam::processorFvPatchField<Type>::initInterfaceMatrixUpdate
     const_cast<processorFvPatchField<Type>&>(*this).updatedMatrix() = false;
 }
 
+
+// hack
+template<class Type>
+void Foam::processorFvPatchField<Type>::updateInterfaceMatrix
+(
+	Field<Type>& result,
+	const Field<Type>& psiInternal,
+	const CoeffField<Type>& coeffs,
+	const Pstream::commsTypes commsType,
+	const bool switchToLhs
+) const
+{}
 
 template<class Type>
 void Foam::processorFvPatchField<Type>::updateInterfaceMatrix

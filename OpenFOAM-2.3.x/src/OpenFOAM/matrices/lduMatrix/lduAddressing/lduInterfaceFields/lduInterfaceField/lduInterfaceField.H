@@ -142,14 +142,38 @@ public:
             ) const
             {}
 
+            // Hacking Hell
+            //- Update result field based on interface functionality
+            /*virtual void updateInterfaceMatrix
+            (
+                scalarField& result,
+                const scalarField& psiInternal,
+                const scalarField& coeffs,
+                const direction cmpt,
+                const Pstream::commsTypes commsType
+            ) const
+            {
+            	updateInterfaceMatrix
+            	(
+            		result,
+            		psiInternal,
+            		coeffs,
+            		cmpt,
+            		commsType,
+            		false // default value
+            	);
+            }*/
+            
+            // HACK
             //- Update result field based on interface functionality
             virtual void updateInterfaceMatrix
             (
-                scalarField&,
-                const scalarField&,
-                const scalarField&,
-                const direction,
-                const Pstream::commsTypes commsType
+                scalarField&,		// result
+                const scalarField&,	// psiInternal
+                const scalarField&,	// coeffs
+                const direction,	// cmpt
+                const Pstream::commsTypes commsType/*,
+                const bool switchToLhs*/
             ) const = 0;
 };
 

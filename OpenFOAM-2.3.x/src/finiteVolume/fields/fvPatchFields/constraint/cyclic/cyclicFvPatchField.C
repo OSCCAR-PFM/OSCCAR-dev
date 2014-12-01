@@ -216,6 +216,19 @@ void cyclicFvPatchField<Type>::updateInterfaceMatrix
 }
 
 
+// hack
+template<class Type>
+void cyclicFvPatchField<Type>::updateInterfaceMatrix
+(
+	Field<Type>& result,
+	const Field<Type>& psiInternal,
+	const CoeffField<Type>& coeffs,
+	const Pstream::commsTypes commsType,
+	const bool switchToLhs
+) const
+{}
+
+
 template<class Type>
 void cyclicFvPatchField<Type>::updateInterfaceMatrix
 (

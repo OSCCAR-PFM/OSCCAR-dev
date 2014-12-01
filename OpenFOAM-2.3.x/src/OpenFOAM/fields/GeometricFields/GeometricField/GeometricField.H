@@ -46,6 +46,8 @@ SourceFiles
 #include "lduInterfaceFieldPtrsList.H"
 #include "LduInterfaceFieldPtrsList.H"
 
+#include "BlockLduInterfaceFieldPtrsList.H"
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 namespace Foam
@@ -203,6 +205,11 @@ public:
             //- Return a list of pointers for each patch field with only those
             //  pointing to interfaces being set
             LduInterfaceFieldPtrsList<Type> interfaces() const;
+            
+            // hack
+            //BlockLduInterfaceFieldPtrsList<Type> blockInterfaces() const;
+            typename BlockLduInterfaceFieldPtrsList<Type>::Type
+            blockInterfaces() const;
 
             //- Return a list of pointers for each patch field with only those
             //  pointing to interfaces being set

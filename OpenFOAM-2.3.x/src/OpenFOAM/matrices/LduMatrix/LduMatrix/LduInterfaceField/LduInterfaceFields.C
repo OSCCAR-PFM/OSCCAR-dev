@@ -25,6 +25,12 @@ License
 
 #include "LduInterfaceField.H"
 #include "fieldTypes.H"
+#include "VectorN.H"
+#include "vector2.H"
+#include "vector3.H"
+#include "vector4.H"
+#include "vector6.H"
+#include "vector8.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 
@@ -39,6 +45,20 @@ namespace Foam
     );
     defineTemplateTypeNameAndDebug(LduInterfaceField<symmTensor>, 0);
     defineTemplateTypeNameAndDebug(LduInterfaceField<tensor>, 0);
+    
+    // hack
+    // Foam::LduInterfaceField<Foam::VectorN<double, 4> >::typeName
+    //defineTemplateTypeNameAndDebug(LduInterfaceField<VectorN>, 0);
+    /*defineTemplateTypeNameAndDebug(LduInterfaceField<VectorN<scalar, 2>>, 0);
+    defineTemplateTypeNameAndDebug(LduInterfaceField<VectorN<scalar, 3>>, 0);
+    defineTemplateTypeNameAndDebug(LduInterfaceField<VectorN<scalar, 4>>, 0);
+    defineTemplateTypeNameAndDebug(LduInterfaceField<VectorN<scalar, 6>>, 0);
+    defineTemplateTypeNameAndDebug(LduInterfaceField<VectorN<scalar, 8>>, 0);*/
+    defineTemplateTypeNameAndDebug(LduInterfaceField<vector2>, 0);
+    defineTemplateTypeNameAndDebug(LduInterfaceField<vector3>, 0);
+    defineTemplateTypeNameAndDebug(LduInterfaceField<vector4>, 0);
+    defineTemplateTypeNameAndDebug(LduInterfaceField<vector6>, 0);
+    defineTemplateTypeNameAndDebug(LduInterfaceField<vector8>, 0);
 }
 
 // ************************************************************************* //

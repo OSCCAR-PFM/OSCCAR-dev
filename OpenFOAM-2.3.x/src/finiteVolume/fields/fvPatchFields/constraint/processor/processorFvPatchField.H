@@ -51,6 +51,7 @@ SourceFiles
 #include "coupledFvPatchField.H"
 #include "processorLduInterfaceField.H"
 #include "processorFvPatch.H"
+#include "CoeffField.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -234,6 +235,15 @@ public:
                 const scalarField& coeffs,
                 const Pstream::commsTypes commsType
             ) const;
+            
+            // hack
+            virtual void initInterfaceMatrixUpdate
+            (
+                Field<Type>& result,
+                const Field<Type>& psiInternal,
+                const CoeffField<Type>& coeffs,
+                const Pstream::commsTypes commsType
+            ) const;
 
             //- Update result field based on interface functionality
             virtual void updateInterfaceMatrix
@@ -242,6 +252,16 @@ public:
                 const Field<Type>& psiInternal,
                 const scalarField& coeffs,
                 const Pstream::commsTypes commsType
+            ) const;
+            
+            // hack
+            virtual void updateInterfaceMatrix
+            (
+                Field<Type>& result,
+                const Field<Type>& psiInternal,
+                const CoeffField<Type>& coeffs,
+                const Pstream::commsTypes commsType,
+                const bool switchToLhs
             ) const;
 
 

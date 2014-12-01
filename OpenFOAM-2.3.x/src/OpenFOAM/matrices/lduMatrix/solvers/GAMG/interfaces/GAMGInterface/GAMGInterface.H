@@ -26,6 +26,8 @@ Class
 
 Description
      Abstract base class for GAMG agglomerated interfaces.
+     
+     faceCells_: contains coarse interface-to-matrix addressing
 
 SourceFiles
     GAMGInterface.C
@@ -39,6 +41,8 @@ SourceFiles
 #include "autoPtr.H"
 #include "lduInterfacePtrsList.H"
 #include "GAMGAgglomeration.H"
+#include "lduPrimitiveMesh.H"
+#include "CoeffField.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -57,15 +61,17 @@ class GAMGInterface
 protected:
 
     // Protected data
+    	// OpenFOAM					foam
+    	// faceRestrictAddressing	restrictAddressing
 
         //- My index in coarseInterfaces
         const label index_;
 
         //- All interfaces
-        const lduInterfacePtrsList& coarseInterfaces_;
+        const lduInterfacePtrsList& coarseInterfaces_; // coarseAdressing?
 
         //- Face-cell addressing
-        labelList faceCells_;
+        labelList faceCells_; // fineAdressing?
 
         //- Face restrict addressing
         labelList faceRestrictAddressing_;
@@ -141,9 +147,9 @@ public:
         (
             const label index,
             const lduInterfacePtrsList& coarseInterfaces,
-            const lduInterface& fineInterface,
-            const labelField& localRestrictAddressing,
-            const labelField& neighbourRestrictAddressing,
+            const lduInterface& fineInterface,				// check
+            const labelField& localRestrictAddressing, 		// check
+            const labelField& neighbourRestrictAddressing, 	// check
             const label fineLevelIndex,
             const label coarseComm
         );
@@ -270,6 +276,14 @@ public:
             virtual tmp<scalarField> agglomerateCoeffs
             (
                 const scalarField& fineCoeffs
+            ) const;
+            
+            // Klas Jareteg: 2013-02-06
+            //- Agglomerating for the CoeffField fine-level coefficients
+            template<class Type>
+            tmp<CoeffField<Type> > agglomerateBlockCoeffs
+            (
+                const CoeffField<Type>& fineCoeffs
             ) const;
 
 

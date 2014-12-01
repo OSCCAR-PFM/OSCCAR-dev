@@ -34,9 +34,11 @@ Description
 #include "scalar.H"
 #include "vector.H"
 #include "sphericalTensor.H"
+#include "diagTensor.H"
 #include "symmTensor.H"
 #include "tensor.H"
 #include "triad.H"
+#include "symmTensor4thOrder.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

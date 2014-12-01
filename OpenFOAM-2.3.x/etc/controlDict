@@ -901,6 +901,9 @@ DebugSwitches
     zoneToPoint         0;
 }
 
+Tolerances
+{
+}
 
 DimensionedConstants
 {
@@ -967,7 +970,6 @@ DimensionedConstants
         }
     }
 }
-
 
 DimensionSets
 {

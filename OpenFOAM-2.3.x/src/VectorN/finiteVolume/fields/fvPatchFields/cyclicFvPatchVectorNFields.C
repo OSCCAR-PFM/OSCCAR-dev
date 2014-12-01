@@ -37,9 +37,8 @@ namespace Foam
 template<>                                                                    \
 void cyclicFvPatchField<Type>::updateInterfaceMatrix                          \
 (                                                                             \
-    const Field<Type>& psiInternal,                                           \
     Field<Type>& result,                                                      \
-    const BlockLduMatrix<Type>&,                                              \
+    const Field<Type>& psiInternal,                                           \
     const CoeffField<Type>& coeffs,                                           \
     const Pstream::commsTypes commsType,                                      \
     const bool switchToLhs                                                    \

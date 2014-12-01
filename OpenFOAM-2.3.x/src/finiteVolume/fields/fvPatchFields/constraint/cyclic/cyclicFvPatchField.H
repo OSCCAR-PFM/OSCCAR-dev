@@ -57,6 +57,7 @@ SourceFiles
 #include "coupledFvPatchField.H"
 #include "cyclicLduInterfaceField.H"
 #include "cyclicFvPatch.H"
+#include "CoeffField.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -192,6 +193,16 @@ public:
                 const Field<Type>& psiInternal,
                 const scalarField& coeffs,
                 const Pstream::commsTypes commsType
+            ) const;
+            
+            // hack
+            virtual void updateInterfaceMatrix
+            (
+                Field<Type>& result,
+                const Field<Type>& psiInternal,
+                const CoeffField<Type>& coeffs,
+                const Pstream::commsTypes commsType,
+                const bool switchToLhs
             ) const;
 
 

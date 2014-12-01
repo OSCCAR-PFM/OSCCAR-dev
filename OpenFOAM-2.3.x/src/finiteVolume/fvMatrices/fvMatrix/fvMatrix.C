@@ -702,6 +702,34 @@ void Foam::fvMatrix<Type>::boundaryManipulate
     }
 }
 
+template<class Type>
+void Foam::fvMatrix<Type>::completeAssembly()
+{
+    /*if (assemblyCompleted_)
+    {
+        return;
+    }
+
+    if (debug)
+    {
+        InfoIn("void Foam::fvMatrix<Type>::completeAssembly()")
+            << "Completing matrix for equation " << this->psi().name()
+                << endl;
+    }
+
+    assemblyCompleted_ = true;*/
+
+    typename GeometricField<Type, fvPatchField, volMesh>::
+        //GeometricBoundaryField& bFields = psi_.boundaryField();
+        //GeometricBoundaryField& bFields(psi_.boundaryField());
+        GeometricBoundaryField bFields(psi_.boundaryField());
+
+    forAll(bFields, patchI)
+    {
+        bFields[patchI].manipulateMatrix(*this);
+    }
+}
+
 
 template<class Type>
 Foam::tmp<Foam::scalarField> Foam::fvMatrix<Type>::D() const

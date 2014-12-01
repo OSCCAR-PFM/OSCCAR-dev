@@ -32,6 +32,11 @@ License
 #include "cyclicFvPatchVectorNFieldsFwd.H"
 #include "cyclicFvPatchField.H"
 
+#include "BlockLduMatrix.H"
+#include "BlockLduInterfaceField.H"
+#include "CoeffField.H"
+
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #endif

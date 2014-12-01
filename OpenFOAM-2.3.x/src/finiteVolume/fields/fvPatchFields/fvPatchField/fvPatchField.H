@@ -648,6 +648,17 @@ defineTemplateRunTimeSelectionTable(fvPatchTypeField, dictionary);
     );
 
 
+// macro hell
+#define makePatchTypeFieldTypeName(type)                                      \
+                                                                              \
+defineNamedTemplateTypeNameAndDebug(type, 0);
+
+
+
+
+
+
+
 // for non-templated patch fields
 #define makePatchTypeField(PatchTypeField, typePatchTypeField)                \
     defineTypeNameAndDebug(typePatchTypeField, 0);                            \

@@ -59,6 +59,9 @@ class lduPrimitiveMesh
 
         //- Upper addressing
         labelList upperAddr_;
+        
+        //- Patch to internal addressing
+        labelListList patchAddr_;
 
         //- List of pointers for each patch
         //  with only those pointing to interfaces being set
@@ -182,6 +185,25 @@ public:
 
 
     // Member Functions
+    	
+    	//- Add interfaces.  Constructor helper
+        void addInterfaces
+        (
+            const lduInterfacePtrsList& interfaces,
+            const labelListList& pa,
+            const lduSchedule& ps
+        )
+        {
+            interfaces_ = interfaces;
+            patchAddr_ = pa;
+            patchSchedule_ = ps;
+        }
+    	
+    	//- Return number of interfaces
+        virtual label nPatches() const
+        {
+            return patchAddr_.size();
+        }
 
         // Access
 

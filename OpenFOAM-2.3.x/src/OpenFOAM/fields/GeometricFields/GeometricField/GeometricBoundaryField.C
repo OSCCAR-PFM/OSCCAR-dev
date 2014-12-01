@@ -28,6 +28,10 @@ License
 #include "globalMeshData.H"
 #include "cyclicPolyPatch.H"
 
+/*#include "BlockLduMatrix.H"
+#include "BlockLduInterfaceField.H"
+#include "BlockLduInterfaceFieldPtrsList.H"*/
+
 template<class Type, template<class> class PatchField, class GeoMesh>
 void Foam::GeometricField<Type, PatchField, GeoMesh>::GeometricBoundaryField::
 readField
@@ -601,6 +605,36 @@ interfaces() const
             (
                 patchi,
                 &refCast<const LduInterfaceField<Type> >
+                (
+                    this->operator[](patchi)
+                )
+            );
+        }
+    }
+
+    return interfaces;
+}
+
+// hack
+template<class Type, template<class> class PatchField, class GeoMesh>
+typename Foam::BlockLduInterfaceFieldPtrsList<Type>::Type
+//Foam::BlockLduInterfaceFieldPtrsList<Type>
+Foam::GeometricField<Type, PatchField, GeoMesh>::GeometricBoundaryField::
+blockInterfaces() const
+{
+    typename BlockLduInterfaceFieldPtrsList<Type>::Type interfaces
+    (
+        this->size()
+    );
+
+    forAll (interfaces, patchi)
+    {
+        if (isA<BlockLduInterfaceField<Type> >(this->operator[](patchi)))
+        {
+            interfaces.set
+            (
+                patchi,
+                &refCast<const BlockLduInterfaceField<Type> >
                 (
                     this->operator[](patchi)
                 )

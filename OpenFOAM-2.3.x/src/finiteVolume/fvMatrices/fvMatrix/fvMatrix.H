@@ -185,21 +185,7 @@ protected:
         ) const;
 
 
-        // Matrix completion functionality
-
-            void addBoundaryDiag
-            (
-                scalarField& diag,
-                const direction cmpt
-            ) const;
-
-            void addCmptAvBoundaryDiag(scalarField& diag) const;
-
-            void addBoundarySource
-            (
-                Field<Type>& source,
-                const bool couples=true
-            ) const;
+        
 
         // Matrix manipulation functionality
 
@@ -283,6 +269,12 @@ public:
             {
                 return psi_;
             }
+            
+            // hack
+            /*GeometricField<Type, fvPatchField, volMesh>& psi()
+            {
+                return psi_;
+            }*/
 
             const dimensionSet& dimensions() const
             {
@@ -299,6 +291,13 @@ public:
                 return source_;
             }
 
+            //- Access to fvBoundary scalar field containing
+            //  pseudo-matrix coeffs for internal cells
+            const FieldField<Field, Type>& internalCoeffs() const
+            {
+                return internalCoeffs_;
+            }
+            
             //- fvBoundary scalar field containing pseudo-matrix coeffs
             //  for internal cells
             FieldField<Field, Type>& internalCoeffs()
@@ -306,6 +305,13 @@ public:
                 return internalCoeffs_;
             }
 
+            //- Access to fvBoundary scalar field containing
+            //  pseudo-matrix coeffs for boundary cells
+            const FieldField<Field, Type>& boundaryCoeffs() const
+            {
+                return boundaryCoeffs_;
+            }
+            
             //- fvBoundary scalar field containing pseudo-matrix coeffs
             //  for boundary cells
             FieldField<Field, Type>& boundaryCoeffs()
@@ -325,6 +331,24 @@ public:
             }
 
 
+        // Hack: moved from protected.
+        // Matrix completion functionality
+
+            void addBoundaryDiag
+            (
+                scalarField& diag,
+                const direction cmpt
+            ) const;
+
+            void addCmptAvBoundaryDiag(scalarField& diag) const;
+
+            void addBoundarySource
+            (
+                Field<Type>& source,
+                const bool couples=true
+            ) const;
+
+        
         // Operations
 
             //- Set solution in given cells to the specified values
@@ -378,6 +402,10 @@ public:
                 typename GeometricField<Type, fvPatchField, volMesh>::
                     GeometricBoundaryField& values
             );
+            
+            //- Complete matrix assembly for solution:
+            //  Manipulate based on a boundary field
+            void completeAssembly();
 
             //- Construct and return the solver
             //  Use the given solver controls

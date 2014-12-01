@@ -37,12 +37,10 @@ namespace Foam
 template <>                                                                   \
 void processorFvPatchField<Type>::initInterfaceMatrixUpdate                   \
 (                                                                             \
-    const Field<Type>& psiInternal,                                           \
     Field<Type>&,                                                             \
-    const BlockLduMatrix<Type>&,                                              \
+    const Field<Type>& psiInternal,                                           \
     const CoeffField<Type>&,                                                  \
-    const Pstream::commsTypes commsType,                                      \
-    const bool switchToLhs                                                    \
+    const Pstream::commsTypes commsType                                      \
 ) const                                                                       \
 {                                                                             \
     procPatch_.compressedSend                                                 \
@@ -55,9 +53,8 @@ void processorFvPatchField<Type>::initInterfaceMatrixUpdate                   \
 template <>                                                                   \
 void processorFvPatchField<Type>::updateInterfaceMatrix                       \
 (                                                                             \
-    const Field<Type>& psiInternal,                                           \
     Field<Type>& result,                                                      \
-    const BlockLduMatrix<Type>&,                                              \
+    const Field<Type>& psiInternal,                                           \
     const CoeffField<Type>& coeffs,                                           \
     const Pstream::commsTypes commsType,                                      \
     const bool switchToLhs                                                    \

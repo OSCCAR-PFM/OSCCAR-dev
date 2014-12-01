@@ -1,4 +1,6 @@
 EXE_INC = \
-    -I$(FOAM_SRC)/finiteVolume/lnInclude
+    -I$(FOAM_SRC)/finiteVolume/lnInclude \
+    -I$(FOAM_SRC)/genericPatchFields/lnInclude \
+    -I$(FOAM_SRC)/OpenFOAM/lnInclude
 
 LIB_LIBS =

@@ -39,6 +39,8 @@ Description
 #include "vectorField.H"
 #include "tensorField.H"
 #include "sphericalTensorField.H"
+#include "symmTensor4thOrderField.H"
+#include "diagTensorField.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

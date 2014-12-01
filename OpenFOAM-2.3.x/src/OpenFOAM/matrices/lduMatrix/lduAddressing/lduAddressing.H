@@ -170,6 +170,10 @@ public:
         {
             return size_;
         }
+        
+        // FIXME:
+        //- Return number of interfaces
+        virtual label nPatches() const = 0;
 
         //- Return lower addressing
         virtual const labelUList& lowerAddr() const = 0;

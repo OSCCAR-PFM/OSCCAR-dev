@@ -39,6 +39,7 @@ SourceFiles
 #include "blockLduMatrices.H"
 #include "fvMatrices.H"
 #include "surfaceFieldsFwd.H"
+#include "BlockLduInterfaceFieldPtrsList.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
